@@ -45,7 +45,7 @@ client.on("ready", () => {
     console.log(`Logged is as ${client.user.tag}`);
 });
 
-const token = "MTM4OTg5NDU4ODUxNjQwMTIxMg.G00aQc.90I5zW_3wQ6nqTAg9X8T44LRFjL73XxS1ojABk";
+const token = "";
 console.log("token", token);
 
 client.on("error", (error) => console.error("Client error:", error));
