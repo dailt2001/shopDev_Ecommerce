@@ -31,33 +31,3 @@ class LoggerService {
 
 const loggerService = new LoggerService();
 export default loggerService;
-
-const client = new Client({
-    intents: [
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-    ],
-});
-
-client.on("ready", () => {
-    console.log(`Logged is as ${client.user.tag}`);
-});
-
-const token = "";
-console.log("token", token);
-
-client.on("error", (error) => console.error("Client error:", error));
-client.on("shardError", (error) => console.error("Shard error:", error));
-client.on("invalidated", () => console.error("Session invalidated"));
-process.on("unhandledRejection", (error) => console.error("Unhandled promise rejection:", error));
-
-client.login(token).catch((err) => console.error("Login failed:", err));
-
-client.on("messageCreate", (msg) => {
-    if (msg.author.bot) return;
-    if (msg.content === "hello") {
-        msg.reply("Hello! How can i assits you today!");
-    }
-});
