@@ -5,6 +5,8 @@ import compression from 'compression';
 import dotenv from 'dotenv'
 import route from './routes/index.js';
 
+
+
 dotenv.config()
 const app = express();
 //init middlewares
@@ -15,6 +17,12 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
+
+//test pubsub
+import productTest from './test/product.test.js';
+import inventoryTest from './test/inventory.test.js';
+
+await productTest.purchaseProduct("product:001", 11)
 //init db
 import './dbs/init.mongodb.js';
 //checkOverLoad()
