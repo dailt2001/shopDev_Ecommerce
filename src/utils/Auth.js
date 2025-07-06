@@ -42,7 +42,6 @@ export const authentication = asyncHandler(async (req, res, next) => {
             if (userId !== decodedUser.userId) throw new AuthFailureError("Invalid User!");
         } else if(accessToken){
             decodedUser = JWT.verify(accessToken, keyStore.publicKey);
-            console.log(decodedUser)
             if (userId !== decodedUser.userId) throw new AuthFailureError("Invalid User!");
         } else {
             throw new AuthFailureError("No Token provided!!")
