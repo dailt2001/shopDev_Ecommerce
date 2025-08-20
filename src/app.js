@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import compression from 'compression';
 import dotenv from 'dotenv'
 import route from './routes/index.js';
+//import {pool} from './test/mysql/connect.mysql.test.js'
 
 
 
@@ -19,13 +20,29 @@ app.use(express.urlencoded({
 }))
 
 //test pubsub
-import productTest from './test/product.test.js';
-import inventoryTest from './test/inventory.test.js';
+// import productTest from './test/product.test.js';
+// import inventoryTest from './test/inventory.test.js';
 
-await productTest.purchaseProduct("product:001", 11)
+// await productTest.purchaseProduct("product:001", 11)
 //init db
 import './dbs/init.mongodb.js';
 //checkOverLoad()
+
+
+//test db
+// app.get('/users', (req, res) => {
+//   pool.query('SELECT * FROM test_table', (err, results) => {
+//     if (err){
+//         console.log('error::', err)
+//         res.send(err)
+//         return;
+//     } 
+//     console.log('result::', results)
+//     res.send(results)
+//   });
+// });
+
+
 //init routes
 app.use('/', route)
 //init errors handler
