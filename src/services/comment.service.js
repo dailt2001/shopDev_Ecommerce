@@ -85,8 +85,6 @@ class CommentService {
 
         return deletedComments
     }
-
-    
 }
 
 export default CommentService;

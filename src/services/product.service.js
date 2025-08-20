@@ -3,6 +3,7 @@ import { BadRequestError } from "../core/error.response.js";
 import { product, clothing, electronic, furniture } from "../models/product.model.js";
 import { updateNestedObjectParser } from "../utils/index.js";
 import { insertInventory } from "../models/repository/inventory.repo.js";
+import NotificationService from "./notification.service.js";
 
 export default class ProductFactory {
 
@@ -89,6 +90,16 @@ class Product {
         if(newProduct){
             await insertInventory({productId: product_id, shopId: this.product_shop, stock: this.product_quantity})
         }
+        // push noti to system collection
+        NotificationService.pushNotiToSystem({
+            type: 'SHOP-001',
+            receivedId: 1,
+            senderId: this.product_shop,
+            options: {
+                product_name: this.product_name,
+                shope_name: this.product_shop
+            }
+        }).then(rs => console.log(rs)).catch(console.error)
         return newProduct
     }
 
