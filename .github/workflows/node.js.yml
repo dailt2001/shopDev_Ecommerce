@@ -25,8 +25,3 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-
-    - run: |
-          pm2 restart shopdev-backend || pm2 start server.js --name shopdev-backend
-          pm2 save
-
