@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import compression from 'compression';
 import dotenv from 'dotenv'
 import route from './routes/index.js';
+import cors from 'cors'
 //import {pool} from './test/mysql/connect.mysql.test.js'
 
 
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
+app.use(cors());
 
 //test pubsub
 // import productTest from './test/product.test.js';
