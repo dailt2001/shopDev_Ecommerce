@@ -1,0 +1,2 @@
+2025-09-06 16:13:04::info::dbe17948-c422-442b-bf1b-82522d39e709::/v1/api/product/sku/select_variation::input params::{"sku_id":"917060.430759","product_id":"917060"}
+2025-09-06 16:13:04::error::dbe17948-c422-442b-bf1b-82522d39e709::/v1/api/product/sku/select_variation::undefined - NaNms - Response: {}::{"message":"Redis cache error: ERR value is not an integer or out of range"}

@@ -1,0 +1,2 @@
+2025-09-02 08:03:30::info::1ee8a7b1-6b15-4f17-bd7d-4fdd84373b79::/v1/api/user/welcome-back::input params::{"token":"650033075"}
+2025-09-02 08:03:30::error::1ee8a7b1-6b15-4f17-bd7d-4fdd84373b79::/v1/api/user/welcome-back::409 - 1ms - Response: {"status":409,"now":1756775010867}::{"message":"User already existed!"}

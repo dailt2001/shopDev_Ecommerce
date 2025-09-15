@@ -1,10 +1,16 @@
 import { ReasonStatusCode } from '../constant/reasonPhrases.js'
 import { StatusCodes } from '../constant/statusCodes.js'
+import myLogger from '../loggers/myLogger.log.js'
 
 class ErrorResponse extends Error{
     constructor(message, status){
         super(message)
         this.status = status
+        this.now = Date.now()
+
+        // myLogger.error(this.message, [
+        //     'v1/api/login', 'vvvvvv333', {error: 'Bad request'}
+        // ])
     }
 }
 

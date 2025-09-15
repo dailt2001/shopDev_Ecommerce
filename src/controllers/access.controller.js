@@ -1,11 +1,14 @@
+import { AuthFailureError } from "../core/error.response.js";
 import { CREATED, SuccessResponse } from "../core/success.response.js";
 import AccessService from "../services/access.service.js";
 
 class AccessController {
     login = async (req, res, next) => {
+        if(!req.body.email) throw new AuthFailureError('Email missing!')
+        const sendData = Object.assign({ requestId: req.requestId }, req.body)
         new SuccessResponse({
             message: "Login Successfully!", 
-            metadata: await AccessService.login(req.body)
+            metadata: await AccessService.login(sendData)
         }).send(res)
     };
     signup = async (req, res, next) => {

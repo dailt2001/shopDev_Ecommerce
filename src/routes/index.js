@@ -9,14 +9,22 @@ import inventoryRouter from './inventory/index.js'
 import commentRouter from './comment/index.js'
 import notificationRouter from './notification/index.js'
 import uploadRouter from './upload/index.js'
+import profileRouter from './profile/index.js'
+import rbacRouter from './rbac/index.js'
+import emailRouter from './email/index.js'
+import userRouter from './user/index.js'
 
 const route = express.Router()
 //check apikey
-route.use(apiKey)
+//route.use(apiKey)
 //check permissions
-route.use(permission('0000'))
+//route.use(permission('0000'))
 
 route.use('/v1/api/upload', uploadRouter)
+route.use('/v1/api/rbac', rbacRouter)
+route.use('/v1/api/email', emailRouter)
+route.use('/v1/api/user', userRouter)
+route.use('/v1/api/profile', profileRouter)
 route.use('/v1/api/inventory', inventoryRouter)
 route.use('/v1/api/comment', commentRouter)
 route.use('/v1/api/notification', notificationRouter)

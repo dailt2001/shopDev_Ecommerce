@@ -33,7 +33,7 @@ export const uploadImageFromLocalS3 = async ({ file }) => {
     
     const getSignedURL = getSignedUrl({
         url: `${urlImagePublic}/${imageName}`,
-        keyPairId: 'KEEMO00PFZSVR',
+        keyPairId: 'KEEMO00PFZSVR', // keyname public
         privateKey: process.env.AWS_CLOUDFRONT_PRIVATE_KEY,
         dateLessThan: new Date(Date.now() + 1000*60)
     })

@@ -1,6 +1,7 @@
 import _ from "lodash";
 import crypto from "crypto";
 import { Types } from "mongoose"
+import { CACHE_PRODUCT } from "../constant/index.js";
 
 export const convertToObjectIdMongodb = id => new Types.ObjectId(id)
 export const getInfoData = ({ fields = [], object = {} }) => {
@@ -59,3 +60,18 @@ export const updateNestedObjectParser = (obj) => {
 
     return final;
 };
+
+export const replacePlaceholder = (template, params) => {
+    Object.keys(params).forEach(k => {
+        const placeholder  = `{{${k}}}`
+        template = template.replace(new RegExp(placeholder, 'g'), params[k])
+    }) 
+
+    return template
+}
+
+export const randomId = () => {
+    return Math.floor(Math.random() * 900000 + 100000)
+}
+
+export const generateCacheKey = (inputId) => `${CACHE_PRODUCT.SKU}${inputId}`

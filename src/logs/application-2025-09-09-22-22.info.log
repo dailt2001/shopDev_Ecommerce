@@ -1,0 +1,3 @@
+2025-09-09 22:22:56::info::2d53aafa-83db-450f-ad3e-4f6eefe822db::/v1/api/product::input params::{}
+2025-09-09 22:22:58::info::e8c4042a-6b0c-4184-9266-97ab530c2e37::/favicon.ico::input params::{}
+2025-09-09 22:22:58::error::e8c4042a-6b0c-4184-9266-97ab530c2e37::/favicon.ico::404 - NaNms - Response: {"status":404}::{"message":"Not Found!"}

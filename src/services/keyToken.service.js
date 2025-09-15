@@ -3,7 +3,7 @@ import keyTokenModel from "../models/keytoken.model.js";
 
 
 class keyTokenService {
-    static createKeyToken = async ({ userId, publicKey, privateKey, refreshToken }) => {
+    static createKeyToken = async ({ userId, publicKey, privateKey, refreshToken = null }) => {
         try {
             // level -
 
@@ -18,7 +18,7 @@ class keyTokenService {
             const filter = {user: userId}
             const update = { privateKey, publicKey, refreshTokensUsed: [], refreshToken }
             const options = { upsert: true, new: true }
-            const tokens = await keyTokenModel.findOneAndUpdate(filter, update, options)
+            const tokens = await keyTokenModel.findOneAndUpdate(filter, { $set: update}, options)
             return tokens ? tokens.publicKey : null
         } catch (error) {
             return error;

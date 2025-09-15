@@ -1,11 +1,14 @@
 import { reservationInventory } from "../models/repository/inventory.repo.js";
-import redis from "redis";
+import { getRedis } from "../dbs/init.redis.js";
 
-const redisClient = redis.createClient({ url: "redis://localhost:6379" });
-redisClient.on("Error::", (error) => console.log(error));
+// const redisClient = redis.createClient({ url: "redis://localhost:6379" });
+// redisClient.on("Error::", (error) => console.log(error));
 
-await redisClient.connect();
-console.log("Connected to redis!");
+// await redisClient.connect();
+// console.log("Connected to redis!");
+
+const { instanceConnection: redisClient } = getRedis()
+
 
 export const acquireLock = async (productId, quantity, cartId) => {
     const key = `lock_v2025_${productId}`; // ma lock
