@@ -4,7 +4,6 @@
 # Log files
 logs/
 *.log
-*.json
 var/log/
 src/logs/
 
