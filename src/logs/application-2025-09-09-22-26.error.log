@@ -1,2 +1,0 @@
-2025-09-09 22:26:43::error::d54fadb5-cb78-43bf-bab5-2d8742dec292::/v1/api/product::undefined - NaNms - Response: {}::{"message":"Cannot read properties of undefined (reading 'permissions')"}
-2025-09-09 22:26:46::error::47a8c90b-5074-40b5-8dab-20640da8a713::/v1/api/product::undefined - NaNms - Response: {}::{"message":"Cannot read properties of undefined (reading 'permissions')"}

@@ -1,2 +1,0 @@
-2025-09-06 15:50:28::error::11a62a24-cee9-41dd-afc3-dc68b09bff39::/v1/api/product/sku/select_variation::undefined - NaNms - Response: {}::{"message":"product_id is not defined"}
-2025-09-06 15:50:52::error::6db7a6b8-1d8e-4894-87c8-c200da190762::/v1/api/product/sku/select_variation::undefined - NaNms - Response: {}::{"message":"Redis cache error: Redis client not initialized!"}

@@ -6,4 +6,5 @@ logs/
 *.log
 *.json
 var/log/
+src/logs/
 

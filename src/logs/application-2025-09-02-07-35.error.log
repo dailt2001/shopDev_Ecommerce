@@ -1,2 +1,0 @@
-2025-09-02 07:35:01::error::2c38827d-4e28-44e0-8387-80318801a2fc::/favicon.ico::404 - NaNms - Response: {"status":404}::{"message":"Not Found!"}
-2025-09-02 07:35:44::error::e79161ec-c98b-444a-b075-f7ed5bf1c3cc::/v1/api/user/welcome-back::404 - 0ms - Response: {"status":404,"now":1756773344589}::{"message":"Otp does not exist!!"}

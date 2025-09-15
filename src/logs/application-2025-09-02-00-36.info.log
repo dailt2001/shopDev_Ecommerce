@@ -1,3 +1,0 @@
-2025-09-02 00:36:30::info::aefb0977-2c2f-4852-94ab-b1b6466d8751::/v1/api/user/new_user::input params::{"email":"letrongdai0102030405@gmail.com"}
-2025-09-02 00:36:51::info::cbec0490-fe53-48c2-8f73-e099b6e8cab4::/v1/api/user/welcome-back::input params::{"token":"2465560537"}
-2025-09-02 00:36:51::error::cbec0490-fe53-48c2-8f73-e099b6e8cab4::/v1/api/user/welcome-back::undefined - NaNms - Response: {}::{"message":"data and salt arguments required"}

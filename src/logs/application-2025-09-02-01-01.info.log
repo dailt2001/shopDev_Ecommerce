@@ -1,2 +1,0 @@
-2025-09-02 01:01:35::info::7e66d4e8-1f50-4379-a88f-8c53bb9b99fa::/v1/api/user/welcome-back::input params::{"token":"2748864706"}
-2025-09-02 01:01:35::error::7e66d4e8-1f50-4379-a88f-8c53bb9b99fa::/v1/api/user/welcome-back::404 - 0ms - Response: {"status":404,"now":1756749695239}::{"message":"Otp does not exist!!"}
