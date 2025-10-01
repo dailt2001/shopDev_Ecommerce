@@ -11,7 +11,7 @@ import { countConnect } from "../helpers/check.connect.js";
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_USERNAME_PASSWORD;
 
-const connectString = `mongodb+srv://${username}:${password}@my-cluster.bvonflo.mongodb.net/test?retryWrites=true&w=majority`;
+const connectString = `mongodb+srv://${username}:${password}@my-cluster.bvonflo.mongodb.net/test`;
 
 class Database {
     constructor() {
