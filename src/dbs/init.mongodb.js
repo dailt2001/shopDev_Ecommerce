@@ -8,16 +8,16 @@ import { countConnect } from "../helpers/check.connect.js";
 // } = config;
 //const connectString = `mongodb://${host}:${port}/${name}`;
 
-const username = process.env.MONGODB_USERNAME
-const password = process.env.MONGODB_USERNAME_PASSWORD
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_USERNAME_PASSWORD;
 
-const connectString = `mongodb+srv://${username}:${password}@my-cluster.bvonflo.mongodb.net/`;
+const connectString = `mongodb+srv://${username}:${password}@my-cluster.bvonflo.mongodb.net/test?retryWrites=true&w=majority`;
 
 class Database {
     constructor() {
         this.connect();
     }
-    connect(type = "mongodb") {
+    async connect(type = "mongodb") {
         if (1 === 1) {
             mongoose.set("debug", true);
             // mongoose.set("debug", function (collectionName, method) {
@@ -26,11 +26,11 @@ class Database {
             //     }
             // });
         }
-        mongoose
+        await mongoose
             .connect(connectString)
             .then((_) => {
-                console.log("Connected Mongodb Success!")
-                countConnect()
+                console.log("Connected Mongodb Success!");
+                countConnect();
             })
             .catch((error) => console.log(error));
     }
