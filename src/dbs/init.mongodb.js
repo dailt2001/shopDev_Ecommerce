@@ -17,7 +17,7 @@ class Database {
     constructor() {
         this.connect();
     }
-    async connect(type = "mongodb") {
+    connect(type = "mongodb") {
         if (1 === 1) {
             mongoose.set("debug", true);
             // mongoose.set("debug", function (collectionName, method) {
@@ -26,7 +26,7 @@ class Database {
             //     }
             // });
         }
-        await mongoose
+        mongoose
             .connect(connectString)
             .then((_) => {
                 console.log("Connected Mongodb Success!");
