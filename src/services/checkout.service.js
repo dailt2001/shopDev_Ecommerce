@@ -1,6 +1,7 @@
 import order from "../models/order.model.js";
+import cart from "../models/cart.model.js"
 import { BadRequestError, NotFound } from "../core/error.response.js";
-import { checkProductByServer, findCartById } from "../models/repository/checkout.repo.js";
+import { checkProductByServer, findCartById, validateCartWithPayload } from "../models/repository/checkout.repo.js";
 import { DiscountService } from "./discount.service.js";
 import { acquireLock, releaseLock } from "./redis.service.js";
 
@@ -10,7 +11,7 @@ class CheckoutService {
     //     userId
     //     shop_order_ids: [
     //     {
-    //          shopId, shopDiscounts:[
+    //          shopId1, shopDiscounts:[
     //             {
     //                 "shopId","code","discountId"
     //             }
@@ -19,11 +20,15 @@ class CheckoutService {
     //                 producId, price, quantity
     //             }
     //         ]
-    //     }
+    //     },... { shopId 2}
     // ]}
     static async checkoutReview({ cartId, userId, shop_order_ids = [] }) {
         const foundCart = await findCartById(cartId);
         if (!foundCart) throw new NotFound("Cart does not exist !!");
+
+        // const validateProducts = validateCartWithPayload({ foundCart, shop_order_ids })
+        // if(!validateProducts) throw new BadRequestError("Cart and order do not match!");
+
         const checkoutOrder = { totalPrice: 0, feeShip: 0, totalDiscount: 0, totalCheckout: 0 },
             shop_order_ids_new = [];
         for (let i = 0; i < shop_order_ids.length; i++) {
@@ -83,7 +88,7 @@ class CheckoutService {
         for (let i = 0; i < products.length; i++) {
             const { productId, quantity } = products[i]
             const keyLock = await acquireLock(productId, quantity, cartId )
-            acquireLock.push(keyLock ? true : false)
+            acquireProduct.push(keyLock ? true : false)
             if(keyLock) await releaseLock(keyLock, cartId)
         }
         // neu co 1 san pham het hang trong kho
@@ -98,7 +103,7 @@ class CheckoutService {
         })
         // insert thanh cong ===> xoa gio hang
         if(newOrder){
-        
+            await cart.deleteOne({ userId, _id: cartId })
         }
         return newOrder
     }
@@ -112,7 +117,7 @@ class CheckoutService {
     static async cancelOrder(){
     }
     //update order status (shop || admin)
-    static async updateOrder(){     
+    static async updateOrderStatusByShop(){     
     }
 }
 

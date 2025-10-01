@@ -1,12 +1,17 @@
 "use strict";
 import mongoose from "mongoose";
 import { countConnect } from "../helpers/check.connect.js";
-import config from "../configs/config.mongodb.js";
 
-const {
-    db: { host, port, name },
-} = config;
-const connectString = `mongodb://${host}:${port}/${name}`;
+//import config from "../configs/config.mongodb.js";
+// const {
+//     db: { host, port, name },
+// } = config;
+//const connectString = `mongodb://${host}:${port}/${name}`;
+
+const username = process.env.MONGODB_USERNAME
+const password = process.env.MONGODB_USERNAME_PASSWORD
+
+const connectString = `mongodb+srv://${username}:${password}@my-cluster.bvonflo.mongodb.net/`;
 
 class Database {
     constructor() {
@@ -23,7 +28,10 @@ class Database {
         }
         mongoose
             .connect(connectString)
-            .then((_) => console.log("Connected Mongodb Success!", countConnect()))
+            .then((_) => {
+                console.log("Connected Mongodb Success!")
+                countConnect()
+            })
             .catch((error) => console.log(error));
     }
     static getInstance() {

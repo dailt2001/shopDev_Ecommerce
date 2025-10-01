@@ -1,4 +1,5 @@
 import apikeyModel from '../models/apikey.model.js'
+import crypto from 'crypto'
 import { HEADER } from '../constant/access.constant.js';
 
 
@@ -10,7 +11,7 @@ export const apiKey = async (req, res, next) => {
                 message: "Forbidden Error",
             });
         }
-        //check db
+
         // const newKey = await apikeyModel.create({ key: crypto.randomBytes(64).toString('hex'), permissions: ['0000']})
         // console.log(newKey)
         const objKey = await apikeyModel.findOne({ key: key.toString(), status: true }).lean();

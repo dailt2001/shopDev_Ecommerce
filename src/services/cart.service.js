@@ -3,7 +3,7 @@ import cart from "../models/cart.model.js";
 import { BadRequestError, NotFound } from "../core/error.response.js";
 
 class CartService{
-    static async createUserCart({ userId, product }) {
+    static async createUserCart({ userId, product = {} }) {
         const query = { cart_userId: userId, cart_state: "active" },
             createOrInsert = {
                 $addToSet: {
@@ -43,7 +43,7 @@ class CartService{
         //da co gio hang nhung chua co product
         if (!userCart.cart_products.length) {
             userCart.cart_products = [product]; 
-            await userCart.save();
+            return await userCart.save();
         }
         //da co product ===> add quantity
         return CartService.updateUserCartQuantity({ userId, product });

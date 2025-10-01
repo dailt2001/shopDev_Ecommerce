@@ -14,8 +14,7 @@ const findUserByEmailWithLogin = async(email) => {
 export const newUser = async({ email = null, captcha = null }) => {
     const user = await User.findOne({ user_email: email }).lean()
     if(user) {
-        throw new ConflictRequestError("User already existed!")
-        return;
+        throw new ConflictRequestError("Email already existed!")
     }
     //send email to user   
     const result = await sendEmailToken({ email })
@@ -30,7 +29,7 @@ export const verifyLinkEmailWithLogin = async( token ) => {
     const { otp_email: email } = await checkOtpToken( token )
 
     const user = await findUserByEmailWithLogin(email)
-    if(user) throw new ConflictRequestError("User already existed!")
+    if(user) throw new ConflictRequestError("Email already existed!")
     //new user
     const hashPassword = await bcrypt.hash(email, 10)
     const newUser = await User.create({

@@ -11,13 +11,17 @@ router.get('/sku/all', asyncHandler(ProductController.findSkusBySpu))
 router.get('/spu/get_spu_info', asyncHandler(ProductController.findOneSpu))
 router.get('/spu/search', asyncHandler(ProductController.searchSpu))
 
+
 router.get('/search/:keySearch', asyncHandler(ProductController.getListSearchProduct))
 router.get('', asyncHandler(ProductController.findAllProducts))
 router.get('/:product_id', asyncHandler(ProductController.findProduct))
+
 //authentication
+
 router.use(authentication)
 router.post('/spu/new', asyncHandler(ProductController.createSpu))
 router.patch('/spu/:product_id', asyncHandler(ProductController.updateSpuWithSkus))
+
 
 router.post('', asyncHandler(ProductController.createProduct))
 router.patch('/update/:productId', asyncHandler(ProductController.updateProduct))

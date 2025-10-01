@@ -7,6 +7,10 @@ const checkoutRouter = express.Router()
 
 checkoutRouter.post('/review', asyncHandler(checkoutController.checkoutReview))
 
+checkoutRouter.use(authentication)
+
+checkoutRouter.post('/order', asyncHandler(checkoutController.orderByUser))
+
 //authentication
 
 

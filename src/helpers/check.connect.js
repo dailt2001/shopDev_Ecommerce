@@ -8,7 +8,7 @@ export const countConnect = () => {
     const numConnection = mongoose.connections.length
     console.log(`Number of connections: ${numConnection}`)
 }
-// check over load 
+// check over load: Noti if server overload connection
 export const checkOverLoad = () => {
     setInterval(() => {
     const numConnection = mongoose.connections.length   

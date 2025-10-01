@@ -10,22 +10,22 @@ class CommentService {
             comment_userId: userId,
             comment_parentId: commentParentId,
         });
-        let rightValue;
+        let insertPosition;
         if (commentParentId) {
             //reply comment
             const parentComment = await Comment.findById(commentParentId);
             if (!parentComment) throw new NotFound("Not found Parent Comment!");
-            rightValue = parentComment.comment_right
-            await Comment.updateMany({ comment_productId: convertToObjectIdMongodb(productId), comment_right: { $gte: rightValue}}, {
+            insertPosition = parentComment.comment_right
+            await Comment.updateMany({ comment_productId: convertToObjectIdMongodb(productId), comment_right: { $gte: insertPosition}}, {
                 $inc: { comment_right: 2 }
             })
 
-            await Comment.updateMany({ comment_productId: convertToObjectIdMongodb(productId), comment_left: { $gt: rightValue}}, {
+            await Comment.updateMany({ comment_productId: convertToObjectIdMongodb(productId), comment_left: { $gt: insertPosition}}, {
                 $inc: { comment_left: 2 }
             })
             //insert 
-            comment.comment_left = rightValue;
-            comment.comment_right = rightValue + 1;
+            comment.comment_left = insertPosition;
+            comment.comment_right = insertPosition + 1;
             await comment.save();
             return comment;
         } else {
@@ -36,13 +36,13 @@ class CommentService {
             );
             //maxRightValue = { comment_right : max}
             if (maxRightValue) {
-                rightValue = maxRightValue.comment_right + 1;
+                insertPosition = maxRightValue.comment_right + 1;
             } else {
-                rightValue = 1;
+                insertPosition = 1;
             }
             //insert
-            comment.comment_left = rightValue;
-            comment.comment_right = rightValue + 1;
+            comment.comment_left = insertPosition;
+            comment.comment_right = insertPosition + 1;
             await comment.save();
             return comment;
         }
@@ -72,7 +72,7 @@ class CommentService {
             return comments
     }
     static async deleteComments({ commentId, productId }){
-        const comment = await Comment.findOne({ _id: convertToObjectIdMongodb(commentId),comment_productId: convertToObjectIdMongodb(productId)})
+        const comment = await Comment.findOne({ _id: convertToObjectIdMongodb(commentId), comment_productId: convertToObjectIdMongodb(productId)})
         if(!comment) throw new NotFound("Not found comment!")
         const { comment_left, comment_right } = comment
         const width = comment_right - comment_left + 1

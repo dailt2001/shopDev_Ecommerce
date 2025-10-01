@@ -78,10 +78,10 @@ const spuSchema = new Schema(
         ]
         */
 
-        isDraft: { type: Boolean, default: true, index: true, select: false },
+        isDraft: { type: Boolean, default: false, index: true, select: false },
         isPublished: {
             type: Boolean,
-            default: false,
+            default: true,
             index: true,
             select: false,
         },

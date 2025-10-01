@@ -42,6 +42,8 @@ class RBACService{
     }
 
     static async createRole({ name, slug, description, grants = [] }){
+        const foundRole = await Role.findOne({ role_name: name })
+        if(foundRole) throw new BadRequestError("Role name  already exists!")
         return await Role.create({
             role_name: name,
             role_slug: slug,

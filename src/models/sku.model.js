@@ -17,10 +17,10 @@ const skuSchema = new Schema(
         sku_stock: { type: Number, default: 0 }, // more detail is Array
         product_id: { type: String, ref: "Spu", require: true },
 
-        isDraft: { type: Boolean, default: true, index: true, select: false },
+        isDraft: { type: Boolean, default: false, index: true, select: false },
         isPublished: {
             type: Boolean,
-            default: false,
+            default: true,
             index: true,
             select: false,
         },

@@ -9,7 +9,12 @@ class CheckoutController{
             metadata: await CheckoutService.checkoutReview(req.body)
         }).send(res)
     };
-
+    orderByUser  = async (req, res, next) => {
+        new SuccessResponse({
+            message: "Order Products Successfully!", 
+            metadata: await CheckoutService.orderByUser(req.body)
+        }).send(res)
+    };
 }
 
 export default new CheckoutController();

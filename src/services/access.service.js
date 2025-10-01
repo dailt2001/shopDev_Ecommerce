@@ -106,17 +106,6 @@ class AccessService {
             //     }
             // );
             const { privateKey, publicKey } = generateKeys();
-            const keyStore = await keyTokenService.createKeyToken({
-                userId: newShop._id,
-                publicKey,
-                privateKey,
-            });
-            if (!keyStore) {
-                return {
-                    code: "xxxx",
-                    message: "PublicKey and PrivateKey does not exist!",
-                };
-            }
             //create token
             const tokens = await createTokenPair(
                 { userId: newShop._id, email },
@@ -124,6 +113,18 @@ class AccessService {
                 publicKey
             );
             console.log("Created Token Success!");
+            const keyStore = await keyTokenService.createKeyToken({
+                userId: newShop._id,
+                publicKey,
+                privateKey,
+                refreshToken: tokens.refreshToken
+            });
+            if (!keyStore) {
+                return {
+                    code: "xxxx",
+                    message: "PublicKey and PrivateKey does not exist!",
+                };
+            }
             return {
                 shop: getInfoData({
                     fields: ["_id", "name", "email"],

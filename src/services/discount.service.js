@@ -157,6 +157,7 @@ export class DiscountService {
                 // first time use
                 discount_users_used.push({ userId, uses: 1 });
             }
+            foundDiscount.markModified('discount_users_used')
             await foundDiscount.save()
         }
 
@@ -175,7 +176,7 @@ export class DiscountService {
         });
         return deleted;
     }
-    static async cancelDiscountCode({ code, shopId }) {
+    static async cancelDiscountCode({ code, shopId, userId }) {
         const foundDiscount = await checkDiscountExist({
             model: discount,
             filter: {

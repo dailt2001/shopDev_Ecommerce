@@ -139,6 +139,18 @@ class Electronics extends Product{
         if(!newProduct) throw new BadRequestError("Create new Product error!")
         return newProduct
     }
+
+    async updateProduct(product_id){
+        const objectParams = this
+        console.log('0:::::', objectParams)
+        if(objectParams.product_attributes){
+            await updateProductById({ productId: product_id,body: updateNestedObjectParser(objectParams.product_attributes) , model: electronic })
+        }
+        const updateProduct = await super.updateProduct(product_id, updateNestedObjectParser(objectParams))
+        console.log('1:::::', updateNestedObjectParser(objectParams.product_attributes))
+        console.log('2:::::', updateNestedObjectParser(objectParams))
+        return updateProduct
+    }
 }
 
 class Furniture extends Product{
